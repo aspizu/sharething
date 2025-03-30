@@ -1,11 +1,12 @@
 import {formatDistanceToNow} from "date-fns"
-import {Eye, Link, Upload, X} from "lucide-react"
+import {Eye, Link, QrCode, X} from "lucide-react"
 import prettyBytes from "pretty-bytes"
 import {useState} from "react"
 import {toast} from "sonner"
 import {ActionButton} from "./action-button"
 import {FileIcon} from "./file-icon"
 import {PreviewDialog} from "./preview-dialog"
+import QRDialog from "./qr-dialog"
 
 export interface FileEntryProps {
     id: string
@@ -27,6 +28,7 @@ export function FileEntry({
     onRemove,
 }: FileEntryProps) {
     const [isPreviewOpen, setIsPreviewOpen] = useState(false)
+    const [isQrOpen, setIsQrOpen] = useState(false)
     const onCopyLinkClick = () => {
         navigator.clipboard.writeText(url)
         toast.success("Copied link to clipboard")
@@ -51,14 +53,12 @@ export function FileEntry({
                 </div>
 
                 <div className="ml-auto flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-                    <ActionButton onClick={onCopyLinkClick} tooltip="Copy link">
-                        <Link size={16} />
+                    <ActionButton tooltip="Share" onClick={() => setIsQrOpen(true)}>
+                        <QrCode size={16} />
                     </ActionButton>
 
-                    <ActionButton asChild tooltip="Open in new tab">
-                        <a href={url} target="_blank" rel="noreferrer">
-                            <Upload size={16} />
-                        </a>
+                    <ActionButton onClick={onCopyLinkClick} tooltip="Copy link">
+                        <Link size={16} />
                     </ActionButton>
 
                     <ActionButton
@@ -82,6 +82,14 @@ export function FileEntry({
                 name={name}
                 open={isPreviewOpen}
                 onOpenChange={setIsPreviewOpen}
+            />
+
+            <QRDialog
+                name={name}
+                url={url}
+                size={size}
+                open={isQrOpen}
+                onOpenChange={setIsQrOpen}
             />
         </>
     )
