@@ -15,9 +15,7 @@ export const uploadRouter = {
         text: options,
         blob: options,
         audio: options,
-    }).onUploadComplete((data) => {
-        console.log("upload completed", data)
-    }),
+    }).onUploadComplete((data) => {}),
 } satisfies FileRouter
 
 export type UploadRouter = typeof uploadRouter
