@@ -1,0 +1,6 @@
+{
+    "name": "sharething",
+    "workspaces": [
+        "packages/*"
+    ]
+}

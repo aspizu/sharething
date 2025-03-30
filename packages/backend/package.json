@@ -1,0 +1,16 @@
+{
+    "name": "sharething-backend",
+    "scripts": {
+        "dev": "bun --watch src/index.ts"
+    },
+    "dependencies": {
+        "@tqman/nice-logger": "^1.1.1",
+        "elysia": "^1.2.25",
+        "logixlysia": "^4.1.2",
+        "uploadthing": "^7.6.0"
+    },
+    "devDependencies": {
+        "@elysiajs/cors": "^1.2.0",
+        "@types/bun": "^1.2.8"
+    }
+}
