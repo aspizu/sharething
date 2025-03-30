@@ -12,6 +12,7 @@ const handlers = createRouteHandler({
 const app = new Elysia()
     .use(logixlysia())
     .use(cors())
+    .get("/", () => `Hello 🚀`)
     .get("/api/uploadthing", ({request}) => handlers(request))
     .post("/api/uploadthing", ({request}) => handlers(request))
     .listen({
